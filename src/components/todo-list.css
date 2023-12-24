@@ -1,0 +1,9 @@
+.todo-container{
+    display: flex;
+    
+}
+
+.todo {
+    display: flex;
+    flex: 1;
+}
