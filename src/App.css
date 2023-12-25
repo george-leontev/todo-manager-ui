@@ -1,4 +1,4 @@
-.App {
+.app {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,18 +6,24 @@
   width: 100vw;
 }
 
-.container {
+.dx-list .dx-empty-message {
+  display: flex;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
   display: flex;
   width: 400px;
   border: 1px solid;
   border-radius: 5px;
 }
 
-.navigation-bar {
-  display: flex;
-}
-
-.navigation {
-  display: flex;
-  flex: 1;
+.app-command-button {
+  border-radius: 50% ;
+  min-width: 46px;
+  height: 46px;
+  border: none;
+  box-shadow: none;
 }

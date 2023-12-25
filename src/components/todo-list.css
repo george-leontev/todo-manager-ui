@@ -1,9 +1,26 @@
-.todo-container{
+.todo-item {
     display: flex;
-    
+    gap: 7px;
 }
 
-.todo {
+.todo-description {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+}
+
+.todo-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
 }
+
+.todo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+}
+
