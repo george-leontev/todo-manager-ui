@@ -1,0 +1,18 @@
+.app-menu {
+    padding: 5px 0 5px 16px ;
+}
+.app-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.app-menu-item-icon {
+    display: flex;
+    flex: 1;
+}
+
+.app-menu-item-text {
+    display: flex;
+    flex: 2;
+}
