@@ -28,3 +28,10 @@
   border: none;
   box-shadow: none;
 }
+
+.app-popup-dialog-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  padding-top: 10px;
+}
