@@ -1,16 +1,21 @@
 import './login-form.css'
+import { useNavigate } from "react-router-dom";
 import { ButtonItem, ButtonOptions, Form, SimpleItem, RequiredRule, EmailRule } from "devextreme-react/form"
 import { useCallback, useMemo, useRef } from "react";
 import { LoginModel } from "../../models/login-model";
 import axios from "axios";
 import { AppConsts } from "../../app-consts";
 import notify from "devextreme/ui/notify";
+import { formatMessage } from 'devextreme/localization';
 
 export const LoginPage = () => {
+    const navigate = useNavigate();
+
     const formRef = useRef<Form>(null);
     const login = useMemo(() => {
         return {
-
+            email: 'egorleontev54@gmail.com',
+            password: 'abcdef'
         } as LoginModel;
     }, []);
 
@@ -28,7 +33,7 @@ export const LoginPage = () => {
             }
         } catch (error) {
             notify({
-                message: `В процессе выполнения запроса возникла ошибка: ${(error as Error).message}`,
+                message: formatMessage('httpErrorMessage', (error as Error).message),
                 type: 'error',
                 displayTime: 2000
             });
@@ -63,7 +68,9 @@ export const LoginPage = () => {
                         const validateResult = formRef.current?.instance.validate();
                         if (validateResult?.isValid) {
                             const accessToken = await signInAsync(formData);
-                            console.log(accessToken);
+                            if (accessToken) {
+                                navigate("/todos");
+                            }
                         }
                     }} />
                 </ButtonItem>

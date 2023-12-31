@@ -8,6 +8,7 @@ import { TodoDialog } from "../../components/todo-dialog/todo-dialog";
 import { TodoList } from "../../components/todo-list/todo-list";
 import { TodoModel } from "../../models/todo-model";
 import { MenuItem } from "../../models/menu-item";
+import { formatMessage } from "devextreme/localization";
 
 export const MainPage = () => {
     const [isTodoDialogVisible, setIsTodoDialogVisible] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export const MainPage = () => {
             }
         } catch (error) {
             notify({
-                message: `В процессе выполнения запроса возникла ошибка: ${(error as Error).message}`,
+                message: formatMessage('httpErrorMessage', (error as Error).message),
                 type: 'error',
                 displayTime: 2000
             });
@@ -48,7 +49,7 @@ export const MainPage = () => {
             }
         } catch (error) {
             notify({
-                message: `В процессе выполнения запроса возникла ошибка: ${(error as Error).message}`,
+                message: formatMessage('httpErrorMessage', (error as Error).message),
                 type: 'error',
                 displayTime: 2000
             });
@@ -78,7 +79,7 @@ export const MainPage = () => {
     const items = useMemo(() => {
         return [
             {
-                text: 'Добавить задачу',
+                text: 'Add todo',
                 icon: () => <AddIcon size={24} />,
                 onClick: (e) => {
                     setIsTodoDialogVisible(true);
