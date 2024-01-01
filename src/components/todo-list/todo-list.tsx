@@ -8,9 +8,10 @@ import { TodoStatusDescriptions } from "../../models/todo-status-description-mod
 export type TodoListProps = {
     items: TodoModel[];
     onDelete?: (todo: TodoModel) => void;
+    onEditing?: (todo: TodoModel) => void;
 }
 
-export const TodoList = ({ items, onDelete }: TodoListProps) => {
+export const TodoList = ({ items, onDelete, onEditing }: TodoListProps) => {
 
     return (
         <List height={500} width={'100%'} dataSource={items} itemRender={(todo: TodoModel) => {
@@ -32,7 +33,9 @@ export const TodoList = ({ items, onDelete }: TodoListProps) => {
                     </div>
                     <div className="todo-icon">
                         <Button className="app-command-button" onClick={() => {
-                            alert('Hi');
+                            if (onEditing) {
+                                onEditing(todo);
+                            }
                         }}>
                             <EditIcon size={22} />
                         </Button>

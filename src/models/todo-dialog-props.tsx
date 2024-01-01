@@ -1,6 +1,13 @@
+import { Proc } from "./common-types";
 import { TodoModel } from "./todo-model";
 
+export enum TodoDialogMode {
+    create,
+    edit
+}
+
 export type TodoDialogProps = {
-    onHidden?: () => void;
+    onHidden?: Proc;
     callback?: (todo: TodoModel) => void;
+    editedTodo?: TodoModel;
 }

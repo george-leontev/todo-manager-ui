@@ -8,16 +8,17 @@ import { TodoStatuses } from "../../models/todo-statuses";
 import { TodoStatusDescriptions } from "../../models/todo-status-description-model";
 
 
-export const TodoDialog = ({ callback, onHidden }: TodoDialogProps) => {
+export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) => {
     const formRef = useRef<Form>(null);
+
     const newTodo = useMemo(() => {
-        return {
+        return editedTodo ? { ...editedTodo } : {
             id: 0,
             description: '',
             date: new Date(),
             status: TodoStatuses.Pending
         } as TodoModel;
-    }, []);
+    }, [editedTodo]);
 
     return (
         <Popup
