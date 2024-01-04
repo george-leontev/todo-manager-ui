@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { AddIcon, MenuIcon } from "../../app-icons";
+import { AddIcon, AdditionalMenuIcon } from "../../app-icons";
 import { MainMenu } from "../../components/main-menu/main-menu";
 import { TodoDialog } from "../../components/todo-dialog/todo-dialog";
 import { TodoList } from "../../components/todo-list/todo-list";
@@ -65,6 +65,7 @@ export const MainPage = () => {
                 text: 'Add todo',
                 icon: () => <AddIcon size={24} />,
                 onClick: (e) => {
+                    setEditedTodo(undefined);
                     setIsTodoDialogVisible(true);
                 }
             },
@@ -72,9 +73,8 @@ export const MainPage = () => {
     }, []);
 
     return (
-
         <div className='single-card dx-card'>
-            <MainMenu menuIcon={() => <MenuIcon size={24} />} items={items} />
+            <MainMenu menuIcon={() => <AdditionalMenuIcon size={24} />} items={items} />
             <TodoList
                 items={todos}
                 onDelete={onTodoDeleteHandler}
@@ -98,5 +98,5 @@ export const MainPage = () => {
                 : null
             }
         </div>
-    )
+    );
 }

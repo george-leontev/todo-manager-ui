@@ -1,0 +1,11 @@
+.todo-item {
+    height: 46px;
+}
+
+.dx-list-item .todo-icon .dx-button {
+    display: none;
+}
+
+.dx-list-item-selected .todo-icon .dx-button {
+    display: inline-flex;
+}

@@ -3,6 +3,7 @@ import { Button } from "devextreme-react/button"
 import { ContextMenu } from "devextreme-react/context-menu";
 import { useCallback, useRef } from "react"
 import { MainMenuProps } from "../../models/main-menu-props";
+import { MainMenuItem } from './main-menu-item';
 
 export const MainMenu = ({ menuIcon, items }: MainMenuProps) => {
     const buttonRef = useRef<Button>(null);
@@ -20,18 +21,7 @@ export const MainMenu = ({ menuIcon, items }: MainMenuProps) => {
         }
     }, []);
 
-    const menuItemRender = useCallback((item: any) => {
-        return (
-            <div className="app-menu-item">
-                <div className="app-menu-item-icon">
-                    {item.icon ? item.icon() : null}
-                </div>
-                <div className="app-menu-item-text">
-                    {item.text}
-                </div>
-            </div>
-        );
-    }, []);
+
 
     return (
         <div className="app-menu">
@@ -45,7 +35,7 @@ export const MainMenu = ({ menuIcon, items }: MainMenuProps) => {
                 ref={contextMenuRef}
                 dataSource={items as any}
                 showEvent={'nowhen'}
-                itemRender={menuItemRender}
+                itemRender={(item) => <MainMenuItem item={item} />}
             />
         </div>
     )

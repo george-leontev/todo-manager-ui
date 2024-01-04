@@ -1,5 +1,7 @@
 .app-menu {
-    padding: 5px 0 5px 16px ;
+    display: flex;
+    justify-content: end;
+    padding: 5px 16px 5px 15px ;
 }
 .app-menu-item {
     display: flex;
