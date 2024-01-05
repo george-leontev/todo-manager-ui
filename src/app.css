@@ -1,0 +1,80 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f2f2f2;
+}
+
+.dx-list .dx-empty-message {
+  display: flex;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.app-command-button {
+  border-radius: 50%;
+  min-width: 46px;
+  height: 46px;
+  border: none;
+  box-shadow: none;
+}
+
+.app-command-button-small {
+  min-width: 28px;
+  height: 28px;
+}
+
+.app-command-button-small .dx-button-content {
+  padding: 0;
+
+}
+
+.app-popup-dialog-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  padding-top: 10px;
+}
+
+.dx-card {
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+  border-radius: 4px;
+  background-color: #fff;
+  margin: 2px 2px 3px;
+}
+
+.single-card.dx-card {
+  margin: auto auto;
+  padding: 40px;
+  flex-grow: 0;
+}
+
+.app-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.app-title {
+  color: rgba(255, 87, 34, 1);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.app-dialog .dx-toolbar-label {
+  color: rgba(255, 87, 34, 1);
+}
+
+.app-text {
+  color: rgba(0, 0, 0, 0.87);
+}
