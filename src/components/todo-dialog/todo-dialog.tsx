@@ -22,6 +22,8 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
 
     return (
         <Popup
+
+            wrapperAttr={{ class: 'app-dialog' }}
             width={600}
             height={'auto'}
             visible
@@ -32,12 +34,20 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
             <Form ref={formRef}
                 formData={newTodo}>
                 <SimpleItem
+                    dataField='title'
+                    editorType='dxTextBox'
+                    editorOptions={{
+                        placeholder: 'Title'
+                    }}
+                    label={{ location: 'top', text: 'Title' }}
+                />
+                <SimpleItem
                     dataField='description'
                     editorType='dxTextBox'
                     editorOptions={{
                         placeholder: 'New todo'
                     }}
-                    label={{ location: 'top', text: 'Todo description' }}
+                    label={{ location: 'top', text: 'Description' }}
                 />
                 <SimpleItem
                     dataField='date'
@@ -52,7 +62,7 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
                         displayExpr: 'description',
                         items: TodoStatusDescriptions
                     }}
-                    label={{ location: 'top', text: 'Todo status' }}
+                    label={{ location: 'top', text: 'Status' }}
                 />
             </Form>
             <div className='app-popup-dialog-bar'>

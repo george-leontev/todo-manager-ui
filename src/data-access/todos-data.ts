@@ -1,12 +1,12 @@
-import axios from "axios";
 import { AppConsts } from "../app-consts";
 import { TodoModel } from "../models/todo-model";
 import { notifyWrapper } from "./helpers";
+import { httpClient } from "./http-client";
 
 
 export const getTodoListAsync = async () => {
     return await notifyWrapper<TodoModel[]>(async () => {
-        const response = await axios.request({
+        const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
             method: 'GET'
         });
@@ -21,7 +21,7 @@ export const getTodoListAsync = async () => {
 
 export const postTodoAsync = async (todo: TodoModel) => {
     return await notifyWrapper<TodoModel>(async () => {
-        const response = await axios.request({
+        const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
             method: 'POST',
             data: todo
@@ -38,7 +38,7 @@ export const postTodoAsync = async (todo: TodoModel) => {
 export const deleteTodoAsync = async (todo: TodoModel) => {
 
     return await notifyWrapper<TodoModel>(async () => {
-        const response = await axios.request({
+        const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}/${todo.id}`,
             method: 'DELETE'
         });
@@ -54,7 +54,7 @@ export const deleteTodoAsync = async (todo: TodoModel) => {
 export const putTodoAsync = async (todo: TodoModel) => {
 
     return await notifyWrapper<TodoModel>(async () => {
-        const response = await axios.request({
+        const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
             method: 'PUT',
             data: todo

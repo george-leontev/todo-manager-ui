@@ -1,6 +1,6 @@
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.material.orange.light.css';
-import './App.css';
+import './app.css';
 
 import { loadMessages, locale } from 'devextreme/localization';
 

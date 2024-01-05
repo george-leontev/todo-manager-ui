@@ -1,3 +1,5 @@
+import './main-page.css'
+
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { AddIcon, AdditionalMenuIcon } from "../../app-icons";
 import { MainMenu } from "../../components/main-menu/main-menu";
@@ -63,7 +65,7 @@ export const MainPage = () => {
         return [
             {
                 text: 'Add todo',
-                icon: () => <AddIcon size={24} />,
+                icon: () => <AddIcon className="app-icon" size={24} />,
                 onClick: (e) => {
                     setEditedTodo(undefined);
                     setIsTodoDialogVisible(true);
@@ -73,8 +75,13 @@ export const MainPage = () => {
     }, []);
 
     return (
-        <div className='single-card dx-card'>
-            <MainMenu menuIcon={() => <AdditionalMenuIcon size={24} />} items={items} />
+        <div className='todo-manager single-card dx-card'>
+            <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 16, paddingBottom: 10 }}>
+                <div style={{flex: 1}} className="app-title">Todo manager</div>
+                <MainMenu menuIcon={() => <AdditionalMenuIcon className="app-icon" size={24} />} items={items} />
+            </div>
+
+
             <TodoList
                 items={todos}
                 onDelete={onTodoDeleteHandler}

@@ -17,8 +17,19 @@ export const TodoList = ({ items, onDelete, onEditing }: TodoListProps) => {
     const menuItems = useMemo(() => {
         return [
             {
+                text: 'Edit todo',
+                icon: () => <EditIcon className='app-icon' size={24} />,
+                onClick: () => {
+                    const todo = listRef.current?.instance.option('selectedItems')?.find(_ => true);
+
+                    if (todo && onEditing) {
+                        onEditing(todo);
+                    }
+                }
+            },
+            {
                 text: 'Delete todo',
-                icon: () => <RemoveIcon size={24} />,
+                icon: () => <RemoveIcon className='app-icon' size={24} />,
                 onClick: () => {
                     const todo = listRef.current?.instance.option('selectedItems')?.find(_ => true);
 
@@ -27,17 +38,6 @@ export const TodoList = ({ items, onDelete, onEditing }: TodoListProps) => {
                     }
                 }
             },
-            {
-                text: 'Edit todo',
-                icon: () => <EditIcon size={24} />,
-                onClick: () => {
-                    const todo = listRef.current?.instance.option('selectedItems')?.find(_ => true);
-
-                    if (todo && onEditing) {
-                        onEditing(todo);
-                    }
-                }
-            }
         ] as MenuItem[]
     }, [onDelete, onEditing]);
 
