@@ -1,4 +1,4 @@
-import './login-page.css'
+import './login-page.scss'
 import { useNavigate } from "react-router-dom";
 import { ButtonItem, ButtonOptions, Form, SimpleItem, RequiredRule, EmailRule } from "devextreme-react/form"
 import { useMemo, useRef } from "react";
@@ -17,7 +17,7 @@ export const LoginPage = () => {
     }, []);
 
     return (
-        <div className="login-card single-card dx-card ">
+        <div className="dx-card single-card login-card">
             <div style={{ fontSize: 24 }}>
                 Login
             </div>
@@ -52,6 +52,5 @@ export const LoginPage = () => {
                 </ButtonItem>
             </Form>
         </div >
-
     )
 }

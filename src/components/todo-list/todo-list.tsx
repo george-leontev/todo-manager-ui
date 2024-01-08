@@ -1,5 +1,5 @@
-import './todo-list.css';
-import './todo-list-item.css'
+import './todo-list.scss';
+import './todo-list-item.scss'
 import { List } from "devextreme-react/list";
 import { TodoModel } from "../../models/todo-model";
 import { TodoListItem } from "./todo-list-item";

@@ -7,11 +7,13 @@
   background-color: #f2f2f2;
 }
 
-.dx-list .dx-empty-message {
-  display: flex;
-  height: 500px;
-  align-items: center;
-  justify-content: center;
+.dx-list {
+  .dx-empty-message {
+    display: flex;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .app-container {
@@ -33,11 +35,10 @@
 .app-command-button-small {
   min-width: 28px;
   height: 28px;
-}
 
-.app-command-button-small .dx-button-content {
-  padding: 0;
-
+  .dx-button-content {
+    padding: 0;
+  }
 }
 
 .app-popup-dialog-bar {
@@ -71,8 +72,10 @@
   font-weight: 500;
 }
 
-.app-dialog .dx-toolbar-label {
-  color: rgba(255, 87, 34, 1);
+.app-dialog {
+  .dx-toolbar-label {
+    color: rgba(255, 87, 34, 1);
+  }
 }
 
 .app-text {

@@ -1,0 +1,63 @@
+.todo-item {
+    display: flex;
+    gap: 18px;
+
+    .dx-list-item .todo-command-button .dx-button {
+        display: none;
+    }
+
+    .dx-list-item-selected .todo-command-button .dx-button {
+        display: inline-flex;
+        background-color: transparent;
+    }
+}
+
+.title-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+
+    .todo-title {
+        font-weight: bold;
+    }
+
+    .todo-description {
+        display: flex;
+        align-items: center;
+        flex: 2;
+        font-size: 14px;
+    }
+
+    .todo-date {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .app-command-button-small {
+            background-color: transparent;
+        }
+
+        .todo-date-apointment {
+            font-size: 14px;
+        }
+    }
+}
+
+.todo-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.todo-icon,
+.todo-command-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-icon-main {
+    align-items: flex-start;
+}

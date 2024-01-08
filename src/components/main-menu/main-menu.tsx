@@ -1,4 +1,4 @@
-import './main-menu.css'
+import './main-menu.scss'
 import { Button } from "devextreme-react/button"
 import { ContextMenu } from "devextreme-react/context-menu";
 import { useCallback, useRef } from "react"

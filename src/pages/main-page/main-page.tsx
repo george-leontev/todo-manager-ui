@@ -1,4 +1,4 @@
-import './main-page.css'
+import './main-page.scss'
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { AddIcon, AdditionalMenuIcon } from "../../app-icons";
@@ -75,7 +75,7 @@ export const MainPage = () => {
     }, []);
 
     return (
-        <div className='todo-manager-card single-card dx-card'>
+        <div className='dx-card single-card todo-manager-card'>
             <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 16, paddingBottom: 10 }}>
                 <div style={{flex: 1}} className="app-title">Todo manager</div>
                 <MainMenu menuIcon={() => <AdditionalMenuIcon className="app-icon" size={24} />} items={items} />
