@@ -57,6 +57,7 @@ export const TodoList = ({ items, onDelete, onEditing }: TodoListProps) => {
         <>
             <MainContextMenu items={menuItems} contextMenuRef={contextMenuRef} />
             <List
+                className='todo-list'
                 ref={listRef}
                 selectionMode={'single'}
                 height={500}

@@ -22,14 +22,13 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
 
     return (
         <Popup
-
             wrapperAttr={{ class: 'app-dialog' }}
             width={600}
             height={'auto'}
             visible
             showCloseButton
             onHidden={onHidden}
-            title='Add todo'
+            title={editedTodo ? 'Edit todo' : 'Add todo'}
         >
             <Form ref={formRef}
                 formData={newTodo}>

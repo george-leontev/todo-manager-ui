@@ -8,6 +8,7 @@ import { TodoList } from "../../components/todo-list/todo-list";
 import { TodoModel } from "../../models/todo-model";
 import { MenuItem } from "../../models/menu-item";
 import { deleteTodoAsync, getTodoListAsync, postTodoAsync, putTodoAsync } from "../../data-access/todos-data";
+import { PageHeader } from '../../components/page-header/page-header';
 
 export const MainPage = () => {
     const [isTodoDialogVisible, setIsTodoDialogVisible] = useState<boolean>(false);
@@ -75,35 +76,38 @@ export const MainPage = () => {
     }, []);
 
     return (
-        <div className='dx-card single-card todo-manager-card'>
-            <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 16, paddingBottom: 10 }}>
-                <div style={{flex: 1}} className="app-title">Todo manager</div>
-                <MainMenu menuIcon={() => <AdditionalMenuIcon className="app-icon" size={24} />} items={items} />
-            </div>
+        <>
+        <PageHeader />
+            <div className='dx-card single-card todo-manager-card'>
+                <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 16, paddingBottom: 10 }}>
+                    <div style={{ flex: 1 }} className="app-title">Todo manager</div>
+                    <MainMenu menuIcon={() => <AdditionalMenuIcon className="app-icon" size={24} />} items={items} />
+                </div>
 
-
-            <TodoList
-                items={todos}
-                onDelete={onTodoDeleteHandler}
-                onEditing={onTodoEditingHandler}
-            />
-
-            {isTodoDialogVisible
-                ? <TodoDialog
-                    callback={(todo: TodoModel) => {
-                        if (todo.id !== 0) {
-                            onTodoEditedHandler(todo);
-                        } else {
-                            onTodoAddedHandler(todo);
-                        }
-                    }}
-                    onHidden={() => {
-                        setIsTodoDialogVisible(false);
-                    }}
-                    editedTodo={editedTodo}
+                <TodoList
+                    items={todos}
+                    onDelete={onTodoDeleteHandler}
+                    onEditing={onTodoEditingHandler}
                 />
-                : null
-            }
-        </div>
+
+                {isTodoDialogVisible
+                    ? <TodoDialog
+                        callback={(todo: TodoModel) => {
+                            if (todo.id !== 0) {
+                                onTodoEditedHandler(todo);
+                            } else {
+                                onTodoAddedHandler(todo);
+                            }
+                        }}
+                        onHidden={() => {
+                            setIsTodoDialogVisible(false);
+                        }}
+                        editedTodo={editedTodo}
+                    />
+                    : null
+                }
+            </div>
+        </>
+
     );
 }

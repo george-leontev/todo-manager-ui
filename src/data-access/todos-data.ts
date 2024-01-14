@@ -5,10 +5,13 @@ import { httpClient } from "./http-client";
 
 
 export const getTodoListAsync = async () => {
+    const token = '';
+
     return await notifyWrapper<TodoModel[]>(async () => {
         const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
-            method: 'GET'
+            method: 'GET',
+            headers: {'Authorization': `Bearer ${token}`}
         });
 
         if (response.status === 200) {
@@ -49,7 +52,6 @@ export const deleteTodoAsync = async (todo: TodoModel) => {
         }
     })
 };
-
 
 export const putTodoAsync = async (todo: TodoModel) => {
 

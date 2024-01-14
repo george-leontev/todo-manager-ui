@@ -4,10 +4,11 @@ import './app.scss';
 
 import { loadMessages, locale } from 'devextreme/localization';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MainPage } from './pages/main-page/main-page';
 import { HomePage } from './pages/home-page/home-page';
 import { LoginPage } from './pages/login-page/login-page';
+import { AuthContextProvider } from './contexts/authContext';
 
 
 function App() {
@@ -22,11 +23,14 @@ function App() {
   return (
     <div className='app'>
       <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/todos' element={<MainPage />} />
-          <Route path='/login' element={<LoginPage />} />
-        </Routes>
+        <AuthContextProvider>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/todos' element={<MainPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='*' element={<Navigate to="/" />} />
+          </Routes>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   );

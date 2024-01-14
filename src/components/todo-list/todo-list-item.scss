@@ -1,15 +1,6 @@
 .todo-item {
     display: flex;
     gap: 18px;
-
-    .dx-list-item .todo-command-button .dx-button {
-        display: none;
-    }
-
-    .dx-list-item-selected .todo-command-button .dx-button {
-        display: inline-flex;
-        background-color: transparent;
-    }
 }
 
 .title-description-container {

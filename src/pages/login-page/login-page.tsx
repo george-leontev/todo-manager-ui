@@ -4,8 +4,10 @@ import { ButtonItem, ButtonOptions, Form, SimpleItem, RequiredRule, EmailRule } 
 import { useMemo, useRef } from "react";
 import { LoginModel } from "../../models/login-model";
 import { signInAsync } from '../../data-access/login-data';
+import { useAuthContext } from '../../contexts/authContext';
 
 export const LoginPage = () => {
+    const { setUser } = useAuthContext()
     const navigate = useNavigate();
 
     const formRef = useRef<Form>(null);
@@ -43,9 +45,12 @@ export const LoginPage = () => {
                         const formData = formRef.current?.instance.option('formData');
                         const validateResult = formRef.current?.instance.validate();
                         if (validateResult?.isValid) {
-                            const accessToken = await signInAsync(formData);
-                            if (accessToken) {
-                                navigate("/todos");
+                            const authUser = await signInAsync(formData);
+                            if (authUser) {
+                                localStorage.setItem('@authUser', JSON.stringify(authUser));
+                                setUser(authUser);
+
+                                navigate("/");
                             }
                         }
                     }} />

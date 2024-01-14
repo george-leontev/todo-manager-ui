@@ -2,29 +2,26 @@ import './home-page.scss'
 
 import { Button } from "devextreme-react/button"
 import { Link } from "react-router-dom"
-import { ProfileIcon } from '../../app-icons'
+import { PageHeader } from '../../components/page-header/page-header'
+import { useAuthContext } from '../../contexts/authContext'
 
 export const HomePage = () => {
+    const { user } = useAuthContext()
+
     return (
         <>
-            <div className='home-page-title'>
-
-                <Link to={'/'}>
-                    {/* <img className='logo-image' src='../../../assets/images/logo.jpg' /> */}
-                    <div className='logo-image'></div>
-                </Link>
-                <div className='home-page-title-content'>Todos</div>
-                <Link to={'/login'}>
-                    <ProfileIcon className='profile-icon' size={35} />
-                </Link>
-            </div>
+            <PageHeader />
             <div className="home-image" />
             <div>
-                <Link to={'/login'}>
-                    <Button className='home-page-login-button' width={200} height={50} type="default">
-                        LOGIN
+                {user ? <Link to={'/todos'}>
+                    <Button className='home-page-login-button' width={200} height={50} type={'success'}>
+                        Start
                     </Button>
-                </Link>
+                </Link> : <Link to={'/login'}>
+                    <Button className='home-page-login-button' width={200} height={50} type={'default'}>
+                        Login
+                    </Button>
+                </Link>}
             </div>
         </>
     )
