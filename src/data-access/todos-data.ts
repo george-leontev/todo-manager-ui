@@ -1,17 +1,24 @@
 import { AppConsts } from "../app-consts";
+import { AuthUserModel } from "../models/auth-user-model";
 import { TodoModel } from "../models/todo-model";
 import { notifyWrapper } from "./helpers";
 import { httpClient } from "./http-client";
 
 
 export const getTodoListAsync = async () => {
-    const token = '';
 
     return await notifyWrapper<TodoModel[]>(async () => {
+        const authUserJson = localStorage.getItem('@authUser');
+        let user: AuthUserModel | undefined = undefined;
+
+        if (authUserJson) {
+            user = JSON.parse(authUserJson);
+        }
+
         const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
             method: 'GET',
-            headers: {'Authorization': `Bearer ${token}`}
+            headers: { 'Authorization': `Bearer ${user?.token}` }
         });
 
         if (response.status === 200) {
@@ -24,10 +31,18 @@ export const getTodoListAsync = async () => {
 
 export const postTodoAsync = async (todo: TodoModel) => {
     return await notifyWrapper<TodoModel>(async () => {
+        const authUserJson = localStorage.getItem('@authUser');
+        let user: AuthUserModel | undefined = undefined;
+
+        if (authUserJson) {
+            user = JSON.parse(authUserJson);
+        }
+
         const response = await httpClient.request({
             url: `${AppConsts.webApiRoutes.todos}`,
             method: 'POST',
-            data: todo
+            data: todo,
+            headers: { 'Authorization': `Bearer ${user?.token}` }
         });
 
         if (response.status === 200) {

@@ -6,19 +6,22 @@ import { useMemo, useRef } from "react";
 import { TodoDialogProps } from "../../models/todo-dialog-props";
 import { TodoStatuses } from "../../models/todo-statuses";
 import { TodoStatusDescriptions } from "../../models/todo-status-description-model";
+import { useAuthContext } from "../../contexts/auth-сontext";
 
 
 export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) => {
     const formRef = useRef<Form>(null);
+    const { user } = useAuthContext()
 
     const newTodo = useMemo(() => {
         return editedTodo ? { ...editedTodo } : {
             id: 0,
             description: '',
             date: new Date(),
-            status: TodoStatuses.Pending
+            status: TodoStatuses.Pending,
+            userId: user.userId
         } as TodoModel;
-    }, [editedTodo]);
+    }, [editedTodo, user.userId]);
 
     return (
         <Popup
@@ -67,9 +70,9 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
             <div className='app-popup-dialog-bar'>
                 <Button text='Ok' type='success' onClick={() => {
                     if (callback) {
-                        const formData = formRef.current?.instance.option('formData');
-
-                        callback(formData as TodoModel);
+                        const todo = formRef.current?.instance.option('formData') as TodoModel;
+                        // todo.userId = user.userId;
+                        callback(todo);
                     }
                     if (onHidden) {
                         onHidden();

@@ -6,4 +6,5 @@ export type TodoModel = {
     description?: string;
     date: Date;
     status: TodoStatuses;
+    userId: number;
 }

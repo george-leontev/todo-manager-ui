@@ -48,7 +48,7 @@ export const MainPage = () => {
         const addedTodo = await postTodoAsync(todo);
         if (addedTodo) {
             setTodos(previous => {
-                return [...previous, todo];
+                return [...previous, addedTodo];
             });
         }
     }, []);

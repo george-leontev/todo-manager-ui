@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ButtonItem, ButtonOptions, Form, SimpleItem, RequiredRule, EmailRule } from "devextreme-react/form"
 import { useMemo, useRef } from "react";
 import { LoginModel } from "../../models/login-model";
-import { signInAsync } from '../../data-access/login-data';
-import { useAuthContext } from '../../contexts/authContext';
+import { useAuthContext } from '../../contexts/auth-сontext';
 
 export const LoginPage = () => {
-    const { setUser } = useAuthContext()
+    const { signInAsync } = useAuthContext()
     const navigate = useNavigate();
 
     const formRef = useRef<Form>(null);
@@ -47,9 +46,6 @@ export const LoginPage = () => {
                         if (validateResult?.isValid) {
                             const authUser = await signInAsync(formData);
                             if (authUser) {
-                                localStorage.setItem('@authUser', JSON.stringify(authUser));
-                                setUser(authUser);
-
                                 navigate("/");
                             }
                         }

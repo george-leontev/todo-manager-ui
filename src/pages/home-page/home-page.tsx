@@ -3,7 +3,7 @@ import './home-page.scss'
 import { Button } from "devextreme-react/button"
 import { Link } from "react-router-dom"
 import { PageHeader } from '../../components/page-header/page-header'
-import { useAuthContext } from '../../contexts/authContext'
+import { useAuthContext } from '../../contexts/auth-сontext'
 
 export const HomePage = () => {
     const { user } = useAuthContext()
