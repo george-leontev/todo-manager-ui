@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ButtonItem, ButtonOptions, Form, SimpleItem, RequiredRule, EmailRule } from "devextreme-react/form"
 import { useMemo, useRef } from "react";
 import { LoginModel } from "../../models/login-model";
-import { useAuthContext } from '../../contexts/auth-сontext';
+import { useAuth } from '../../contexts/auth-сontext';
 
 export const LoginPage = () => {
-    const { signInAsync } = useAuthContext()
+    const { signInAsync } = useAuth();
     const navigate = useNavigate();
 
     const formRef = useRef<Form>(null);

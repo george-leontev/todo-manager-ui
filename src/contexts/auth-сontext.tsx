@@ -8,11 +8,12 @@ export type AuthContextModel = {
     user: AuthUserModel;
     setUser: Dispatch<SetStateAction<AuthUserModel | undefined>>;
     signInAsync: (login: LoginModel) => Promise<AuthUserModel | undefined>;
+    signOutAsync: () => Promise<void>;
 }
 
 const AuthContext = createContext({} as AuthContextModel);
 
-function AuthContextProvider(props: any) {
+function AuthProvider(props: any) {
     const [user, setUser] = useState<AuthUserModel>();
 
     const signInAsync = useCallback(async (login: LoginModel) => {
@@ -31,6 +32,11 @@ function AuthContextProvider(props: any) {
         }
     }, []);
 
+    const signOutAsync = useCallback(async () => {
+        localStorage.removeItem('@authUser');
+        setUser(undefined);
+    }, [])
+
     useEffect(() => {
         const authUserJson = localStorage.getItem('@authUser');
         if (authUserJson) {
@@ -42,10 +48,11 @@ function AuthContextProvider(props: any) {
     return <AuthContext.Provider value={{
         user,
         setUser,
-        signInAsync
+        signInAsync,
+        signOutAsync
     }} {...props} />
 }
 
-const useAuthContext = () => useContext(AuthContext);
+const useAuth = () => useContext(AuthContext);
 
-export { useAuthContext, AuthContextProvider }
+export { useAuth, AuthProvider }

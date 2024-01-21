@@ -1,19 +1,3 @@
-import { formatMessage } from "devextreme/localization";
-import notify from "devextreme/ui/notify";
-
-export const notifyWrapper = async <T>(requestCallbackAsync: () => Promise<T | undefined>) => {
-
-    try {
-        return await requestCallbackAsync();
-    } catch (error) {
-        notify({
-            message: formatMessage('httpErrorMessage', (error as Error).message),
-            type: 'error',
-            displayTime: 2000
-        });
-    }
-}
-
 const isoDateFormat = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/;
 
 function isIsoDateString(value: any): boolean {

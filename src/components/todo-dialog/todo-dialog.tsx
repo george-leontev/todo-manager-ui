@@ -6,12 +6,12 @@ import { useMemo, useRef } from "react";
 import { TodoDialogProps } from "../../models/todo-dialog-props";
 import { TodoStatuses } from "../../models/todo-statuses";
 import { TodoStatusDescriptions } from "../../models/todo-status-description-model";
-import { useAuthContext } from "../../contexts/auth-сontext";
+import { useAuth } from "../../contexts/auth-сontext";
 
 
 export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) => {
     const formRef = useRef<Form>(null);
-    const { user } = useAuthContext()
+    const { user } = useAuth();
 
     const newTodo = useMemo(() => {
         return editedTodo ? { ...editedTodo } : {

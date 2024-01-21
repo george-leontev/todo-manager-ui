@@ -7,11 +7,12 @@ import { TodoDialog } from "../../components/todo-dialog/todo-dialog";
 import { TodoList } from "../../components/todo-list/todo-list";
 import { TodoModel } from "../../models/todo-model";
 import { MenuItem } from "../../models/menu-item";
-import { deleteTodoAsync, getTodoListAsync, postTodoAsync, putTodoAsync } from "../../data-access/todos-data";
 import { PageHeader } from '../../components/page-header/page-header';
+import { useDataAccess } from '../../contexts/data-access-context';
 
 export const MainPage = () => {
     const [isTodoDialogVisible, setIsTodoDialogVisible] = useState<boolean>(false);
+    const { deleteTodoAsync, getTodoListAsync, postTodoAsync, putTodoAsync } = useDataAccess();
     const [todos, setTodos] = useState<TodoModel[]>([]);
     const [editedTodo, setEditedTodo] = useState<TodoModel>();
 
@@ -24,7 +25,7 @@ export const MainPage = () => {
                 });
             });
         }
-    }, []);
+    }, [deleteTodoAsync]);
 
     const onTodoEditingHandler = useCallback(async (todo: TodoModel) => {
         setEditedTodo(todo);
@@ -42,7 +43,7 @@ export const MainPage = () => {
                 return updatedTodos;
             });
         }
-    }, []);
+    }, [putTodoAsync]);
 
     const onTodoAddedHandler = useCallback(async (todo: TodoModel) => {
         const addedTodo = await postTodoAsync(todo);
@@ -51,7 +52,7 @@ export const MainPage = () => {
                 return [...previous, addedTodo];
             });
         }
-    }, []);
+    }, [postTodoAsync]);
 
     useEffect(() => {
         (async () => {
@@ -60,7 +61,7 @@ export const MainPage = () => {
                 setTodos(todos);
             }
         })();
-    }, []);
+    }, [getTodoListAsync]);
 
     const items = useMemo(() => {
         return [
@@ -77,7 +78,7 @@ export const MainPage = () => {
 
     return (
         <>
-        <PageHeader />
+            <PageHeader />
             <div className='dx-card single-card todo-manager-card'>
                 <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 16, paddingBottom: 10 }}>
                     <div style={{ flex: 1 }} className="app-title">Todo manager</div>
