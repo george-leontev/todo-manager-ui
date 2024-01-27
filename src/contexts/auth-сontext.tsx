@@ -3,12 +3,14 @@ import { AuthUserModel } from "../models/auth-user-model";
 import { httpClient } from "../data-access/http-client";
 import { LoginModel } from "../models/login-model";
 import { AppConsts } from "../app-consts";
+import { RegistrationModel } from "../models/registration-model";
 
 export type AuthContextModel = {
     user: AuthUserModel;
     setUser: Dispatch<SetStateAction<AuthUserModel | undefined>>;
     signInAsync: (login: LoginModel) => Promise<AuthUserModel | undefined>;
     signOutAsync: () => Promise<void>;
+    registrationAsync: (registration: RegistrationModel) => Promise<void>;
 }
 
 const AuthContext = createContext({} as AuthContextModel);
@@ -37,6 +39,17 @@ function AuthProvider(props: any) {
         setUser(undefined);
     }, [])
 
+    const registrationAsync = useCallback(async (registration: RegistrationModel) => {
+        const response = await httpClient.request({
+            url: `${AppConsts.webApiRoutes.registration}`,
+            method: 'POST',
+            data: registration
+        });
+        if (response.status === 200) {
+            return response.data;
+        }
+    }, [])
+
     useEffect(() => {
         const authUserJson = localStorage.getItem('@authUser');
         if (authUserJson) {
@@ -49,7 +62,8 @@ function AuthProvider(props: any) {
         user,
         setUser,
         signInAsync,
-        signOutAsync
+        signOutAsync,
+        registrationAsync
     }} {...props} />
 }
 

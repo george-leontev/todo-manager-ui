@@ -5,6 +5,7 @@ const webApiRoot = process.env.NODE_ENV !== 'production'
 export const AppConsts = {
     webApiRoutes: {
         todos: `${webApiRoot}/todos`,
-        signIn: `${webApiRoot}/sign-in`
+        signIn: `${webApiRoot}/sign-in`,
+        registration: `${webApiRoot}/registration`
     }
 }
