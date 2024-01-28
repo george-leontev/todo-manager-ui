@@ -11,9 +11,9 @@ export const RegistrationPage = () => {
     const formRef = useRef<Form>(null)
     const registration = useMemo(() => {
         return {
-            email: '',
-            password: '',
-            confirmedPassword: ''
+            email: 'egorleontev54@gmail.com',
+            password: 'abcdef',
+            confirmedPassword: 'abcdef'
         } as RegistrationModel;
     }, [])
 

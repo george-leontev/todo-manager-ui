@@ -11,6 +11,7 @@ import { LoginPage } from './pages/login-page/login-page';
 import { AuthProvider } from './contexts/auth-сontext';
 import { DataAccessProvider } from './contexts/data-access-context';
 import { RegistrationPage } from './pages/registration-page/registration-page';
+import { RegistrationConfirmPage } from './pages/registration-page/registration-confirm-page';
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/todos' element={<MainPage />} />
               <Route path='/login' element={<LoginPage />} />
-              <Route path='/registration' element={<RegistrationPage />} />e
+              <Route path='/registration' element={<RegistrationPage />} />
+              <Route path='/registration/confirm' element={<RegistrationConfirmPage />} />
               <Route path='*' element={<Navigate to="/" />} />
             </Routes>
           </DataAccessProvider>
