@@ -38,7 +38,8 @@ export const MainPage = () => {
             setTodos(previous => {
                 const updatedTodos = [...previous.filter((t) => {
                     return todo.id !== t.id;
-                }), todo].sort((a, b) => a.id - b.id);
+                }), todo]
+                // .sort((a, b) => a.id - b.id);
 
                 return updatedTodos;
             });
@@ -94,7 +95,7 @@ export const MainPage = () => {
                 {isTodoDialogVisible
                     ? <TodoDialog
                         callback={(todo: TodoModel) => {
-                            if (todo.id !== 0) {
+                            if (todo.id !== '') {
                                 onTodoEditedHandler(todo);
                             } else {
                                 onTodoAddedHandler(todo);

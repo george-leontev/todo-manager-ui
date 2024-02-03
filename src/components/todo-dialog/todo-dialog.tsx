@@ -15,7 +15,7 @@ export const TodoDialog = ({ callback, onHidden, editedTodo }: TodoDialogProps) 
 
     const newTodo = useMemo(() => {
         return editedTodo ? { ...editedTodo } : {
-            id: 0,
+            id: '',
             description: '',
             date: new Date(),
             status: TodoStatuses.Pending,

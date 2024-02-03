@@ -1,10 +1,10 @@
 import { TodoStatuses } from "./todo-statuses";
 
 export type TodoModel = {
-    id: number;
+    id: string;
     title: string;
     description?: string;
     date: Date;
     status: TodoStatuses;
-    userId: number;
+    userId: string;
 }

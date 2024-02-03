@@ -14,6 +14,7 @@ export type DataAccessModel = {
     postTodoAsync: (todo: TodoModel) => Promise<TodoModel | undefined>;
     deleteTodoAsync: (todo: TodoModel) => Promise<TodoModel | undefined>;
     putTodoAsync: (todo: TodoModel) => Promise<TodoModel | undefined>;
+    confirmRegistrationAsync: (ticket: string) => Promise<boolean>;
 }
 
 const DataAccessContext = createContext({} as DataAccessModel)
@@ -111,7 +112,31 @@ function DataAccessProvider(props: any) {
         }
     }, [authHttpRequest]);
 
-    return <DataAccessContext.Provider value={{ getTodoListAsync, postTodoAsync, deleteTodoAsync, putTodoAsync }} {...props} />
+    const confirmRegistrationAsync = useCallback(async (ticket: string) => {
+        try {
+            const response = await httpClient.request({
+                method: 'POST',
+                url: `${AppConsts.webApiRoutes.registration}/confirm?ticket=${ticket}`
+            });
+            return response.status === 200;
+        } catch (error) {
+            const err = error as AxiosError;
+            if (err.response?.status === 403) {
+                return false;
+            }
+
+            notify({
+                message: formatMessage('httpErrorMessage', err.message),
+                type: 'error',
+                displayTime: 5000
+            });
+
+            return false;
+        }
+
+    }, []);
+
+    return <DataAccessContext.Provider value={{ getTodoListAsync, postTodoAsync, deleteTodoAsync, putTodoAsync, confirmRegistrationAsync }} {...props} />
 }
 
 const useDataAccess = () => useContext(DataAccessContext);
