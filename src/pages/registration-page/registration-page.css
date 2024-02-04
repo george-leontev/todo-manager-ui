@@ -15,3 +15,34 @@
     padding: 40px;
     flex-grow: 0;
 }
+
+.registration-error {
+    padding: 10px;
+    margin-top: 24px;
+    background-color: #ff5722;
+    color: white;
+    border-radius: 10px;
+    line-height: 1.9em;
+}
+
+.registration-proccess {
+    padding: 10px;
+    margin-top: 24px;
+    background-color: #ff5722;
+    color: white;
+    border-radius: 10px;
+    line-height: 1.9em;
+}
+
+.registration-proccess-icon {
+    animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }

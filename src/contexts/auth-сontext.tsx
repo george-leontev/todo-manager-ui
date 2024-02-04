@@ -4,13 +4,16 @@ import { httpClient } from "../data-access/http-client";
 import { LoginModel } from "../models/login-model";
 import { AppConsts } from "../app-consts";
 import { RegistrationModel } from "../models/registration-model";
+import { AxiosError } from "axios";
+import notify from "devextreme/ui/notify";
+import { formatMessage } from "devextreme/localization";
 
 export type AuthContextModel = {
     user: AuthUserModel;
     setUser: Dispatch<SetStateAction<AuthUserModel | undefined>>;
     signInAsync: (login: LoginModel) => Promise<AuthUserModel | undefined>;
     signOutAsync: () => Promise<void>;
-    registrationAsync: (registration: RegistrationModel) => Promise<void>;
+    registrationAsync: (registration: RegistrationModel) => Promise<RegistrationModel | null>;
 }
 
 const AuthContext = createContext({} as AuthContextModel);
@@ -40,14 +43,25 @@ function AuthProvider(props: any) {
     }, [])
 
     const registrationAsync = useCallback(async (registration: RegistrationModel) => {
-        const response = await httpClient.request({
-            url: `${AppConsts.webApiRoutes.registration}`,
-            method: 'POST',
-            data: registration
-        });
-        if (response.status === 200) {
-            return response.data;
+        try {
+            const response = await httpClient.request({
+                url: `${AppConsts.webApiRoutes.registration}`,
+                method: 'POST',
+                data: registration
+            });
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (error) {
+            notify({
+                message: 'An error was happened during the registration.',
+                type: 'error',
+                displayTime: 5000
+            });
+
+            return null
         }
+
     }, [])
 
     useEffect(() => {

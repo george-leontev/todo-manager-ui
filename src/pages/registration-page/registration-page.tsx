@@ -4,10 +4,12 @@ import { useMemo, useRef } from 'react';
 import { ButtonItem, ButtonOptions, Form, RequiredRule, EmailRule, SimpleItem } from "devextreme-react/form";
 import { RegistrationModel } from '../../models/registration-model';
 import { useAuth } from '../../contexts/auth-сontext';
+import { useNavigate } from 'react-router';
 
 
 export const RegistrationPage = () => {
     const { registrationAsync } = useAuth();
+    const navigate = useNavigate();
     const formRef = useRef<Form>(null)
     const registration = useMemo(() => {
         return {
@@ -50,11 +52,13 @@ export const RegistrationPage = () => {
                 <ButtonItem>
                     <ButtonOptions text="Registration" type="default" width={'100%'} onClick={async () => {
                         const formData = formRef.current?.instance.option('formData');
-                        const authUser = await registrationAsync(formData);
-                        // const validateResult = formRef.current?.instance.validate();
-                        // if (validateResult?.isValid) {
-
-                        // }
+                        const validateResult = formRef.current?.instance.validate();
+                        if (validateResult?.isValid) {
+                            const registration = await registrationAsync(formData);
+                            if (registration) {
+                                navigate('/');
+                            }
+                        }
 
                     }}></ButtonOptions>
                 </ButtonItem>
